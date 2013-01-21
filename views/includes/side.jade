@@ -1,42 +1,41 @@
 mixin sidebar()
-  aside
-    .sidebarBox.widget_search
-      form#searchform(role='search', method='get', action='https://www.google.com/cse', target='_blank')
-        label.screen-reader-text(for='s') Search for:
-        input#s(type='text', value='', name='q', placeholder='Search this site...')
-        input(type='hidden', name='cx', value=config.search.google_cx)
-        input(type='hidden', name='ie', value='UTF-8')
-        input(name='siteurl', type='hidden', value=config.search.domain)
-        input#searchsubmit(type='submit', value='Search')
-    .sidebarBox
-      h4= label('Language')
-      ul
+  .sidebarBox.widget_search
+    form#searchform(role='search', method='get', action='https://www.google.com/cse', target='_blank')
+      label.screen-reader-text(for='s') Search for:
+      input#s(type='text', value='', name='q', placeholder='Search this site...')
+      input(type='hidden', name='cx', value=config.search.google_cx)
+      input(type='hidden', name='ie', value='UTF-8')
+      input(name='siteurl', type='hidden', value=config.search.domain)
+      input#searchsubmit(type='submit', value='Search')
+  .sidebarBox
+    h4= label('Language')
+    ul
+      li
+        a(href=postId?postId:'/') 原文
+      li
+        a(href='/zht' + postId) 正體中文
+      li
+        a(href='/zhs' + postId) 簡體中文
+      li
+        a(href='/en' + postId) English
+  .sidebarBox
+    h4= label('Categories')
+    ul
+      each category in config.categories
         li
-          a(href=postId?postId:'/') 原文
+          a(href=langLink('/blog/tag/' + category))= category
+  .sidebarBox
+    h4= label('Most popular')
+    ul
+      each post in popularPosts
         li
-          a(href='/zht' + postId) 正體中文
+          a(href=langLink('/' + post.id))= postTitle(post)
+          = ' - '
+          = post.clicks
+  .sidebarBox
+    h4= label('Archives')
+    ul
+      each archive in archives
         li
-          a(href='/zhs' + postId) 簡體中文
-        li
-          a(href='/en' + postId) English
-    .sidebarBox
-      h4= label('Categories')
-      ul
-        each category in config.categories
-          li
-            a(href=langLink('/blog/tag/' + category))= category
-    .sidebarBox
-      h4= label('Most popular')
-      ul
-        each post in popularPosts
-          li
-            a(href=langLink('/' + post.id))= postTitle(post)
-            = ' - '
-            = post.clicks
-    .sidebarBox
-      h4= label('Archives')
-      ul
-        each archive in archives
-          li
-            a(href=langLink('/blog/archive/' + archive.month.getFullYear() + '/' + (archive.month.getMonth() + 1))) #{monthYearText(archive.month)}
-            = ' (' + archive.count + ')'
+          a(href=langLink('/blog/archive/' + archive.month.getFullYear() + '/' + (archive.month.getMonth() + 1))) #{monthYearText(archive.month)}
+          = ' (' + archive.count + ')'

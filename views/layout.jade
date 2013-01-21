@@ -18,9 +18,9 @@ html
         .container.clearfix
           block banner-image
             img.intro-img(src="/images/banner-bg-0.jpg")
-        #content-main.three-fourth
+        section#content-main
           block content
-        #content-side.one-fourth.last
+        aside#content-side
           mixin sidebar()
       mixin footer()
     != js('script')

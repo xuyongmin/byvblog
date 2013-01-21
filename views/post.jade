@@ -17,6 +17,7 @@ block scripts
     var disqus_shortname = '#{config.disqus.shortname}';
     var disqus_identifier = '#{post.guid}';
     var disqus_url = location.protocol + '//' + location.host + '/' + '#{post.id}';
+    var disqus_title = '#{post.title}';
     var disqus_developer = #{config.disqus.developer};
     (function() {
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

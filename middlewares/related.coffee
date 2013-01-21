@@ -71,9 +71,16 @@ exports.relatedPosts = (post, count, next) ->
     if a.similarity > b.similarity then -1 else 1
   next null, targets.slice(0, count)
 
-exports.updateRelatedPosts = (next) ->
-  usePostMap = true
-  Post.find {}, obtain(posts)
+exports.updateRelatedPosts = (targetPost, next) ->
+  if targetPost? and next?
+    #single post
+    Post.findOne {guid: targetPost.guid}, obtain(post)
+    posts = [post]
+  else
+    next = targetPost if not next?
+    usePostMap = true
+    Post.find {}, obtain(posts)
+  
   for post in posts
     console.log post.id, post.contents[0].title
     relatedPosts = []

@@ -7,6 +7,7 @@ connect_mongo = require 'connect-mongo'
 config = require './config'
 routes = require './routes'
 helper = require './middlewares/helper'
+processor = require('./lib/processor')
 
 app = express()
 
@@ -40,3 +41,6 @@ routes app
 port = app.get 'port'
 http.createServer(app).listen port, cont()
 console.log "Express server listening on port " + port
+
+processor.start obtain()
+console.log 'Background processor started'

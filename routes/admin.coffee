@@ -1,6 +1,7 @@
 'use continuation'
 User = require '../models/user'
 Post = require '../models/post'
+processor = require('../lib/processor')
 
 exports.index = (req, res, next) ->
   if not req.session.user?
@@ -43,6 +44,7 @@ exports.newPost = (req, res, next) ->
     return res.redirect '/admin/new'
   req.session.success = 'Post saved'
   res.redirect '/admin/edit/' + post.guid
+  processor.updateRelatedPosts post
 
 exports.editPostPage = (req, res, next) ->
   if not req.session.user?
@@ -73,6 +75,7 @@ exports.editPost = (req, res, next) ->
     post.modify req.body.post, obtain(savedPost)
     req.session.success = 'Post saved'
     res.redirect '/admin/edit/' + savedPost.guid
+    processor.updateRelatedPosts savedPost
   catch err
     req.session.error = err.toString()
     res.render 'admin/editpost',

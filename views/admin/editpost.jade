@@ -46,6 +46,13 @@ block content
           input#postList(type='checkbox', name='post[list]', value=1, checked)
         - else
           input#postList(type='checkbox', name='post[list]', value=1)
+    .control-group
+      label(for='commentDisabled')= label('Comment Disabled')
+      .controls
+        - if (post && post.commentDisabled)
+          input#commentDisabled(type='checkbox', name='post[commentDisabled]', value=1, checked)
+        - else
+          input#commentDisabled(type='checkbox', name='post[commentDisabled]', value=1)
     - var languages = ['zht', 'zhs', 'en']
     #tabscontainer.clearfix
       ul.tabs

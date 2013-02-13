@@ -38,6 +38,7 @@ postSchema = new mongoose.Schema
     type: Boolean
     index: true
   related: [String]
+  commentDisabled: Boolean
 
 module.exports = Post = mongoose.model 'Post', postSchema
 
@@ -54,6 +55,8 @@ postSchema.pre 'save', (next) ->
     @list = false
   if not @clicks
     @clicks = 0
+  if not @commentDisabled?
+    @commentDisabled = false
   next()
 
 Post.getPosts = (conditions, page, pageSize, next) ->
@@ -171,6 +174,7 @@ Post::modify = (rawPost, next) ->
   @tags = parseTags rawPost.tags
   @clicks = rawPost.clicks
   @private = rawPost.private
+  @commentDisabled = rawPost.commentDisabled
   @list = rawPost.list
   @contentsFormat = rawPost.contentsFormat
   @contents = parseContents rawPost.contents

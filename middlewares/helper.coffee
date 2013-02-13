@@ -24,9 +24,7 @@ module.exports = (req, res, next) ->
   if pathSec.length >= 2 and pathSec[pathSec.length - 2] is 'page'
     pathSec = pathSec.slice(0, pathSec.length - 2)
   postId = '/' + pathSec.join '/'
-  #Remove '/' in the tail
-  if postId[postId.length - 1] is '/'
-    postId = postId.substr(0, postId.length - 1)
+
   res.locals.postId = postId
   res.locals.language = language
   

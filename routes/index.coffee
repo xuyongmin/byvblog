@@ -4,10 +4,10 @@ admin = require('./admin')
 
 routes = [
   {
-    path: /^\/((.{2,3})|)$/
+    path: /^\/((.{2,3})\/|)blog$/
     GET: post.displayPostList
   }, {
-    path: /^\/((.{2,3})\/|)(page\/(\d{1,4})|)$/
+    path: /^\/((.{2,3})\/|)blog\/(page\/(\d{1,4})|)$/
     GET: post.displayPostList
   }, {
     path: /^\/((.{2,3})\/|)feed$/
@@ -40,7 +40,7 @@ routes = [
     GET: admin.editPostPage
     POST: admin.editPost
   }, {
-    path: /^\/((.{2,3})\/|)(.+?)(\/|)$/
+    path: /^\/((.{2,3})\/|)(.*?)(\/|)$/
     GET: post.displayPost
   }
 ]

@@ -10,10 +10,10 @@ routes = [
     path: /^\/((.{2,3})\/|)blog\/(page\/(\d{1,4})|)$/
     GET: post.displayPostList
   }, {
-    path: /^\/((.{2,3})\/|)feed$/
+    path: /^\/((.{2,3})\/|)feed(\/|)$/
     GET: feed.feed
   }, {
-    path: /^\/((.{2,3})\/|)blog\/feed$/
+    path: /^\/((.{2,3})\/|)blog\/feed(\/|)$/
     GET: feed.feed
   }, {
     path: /^\/((.{2,3})\/|)blog\/tag$/

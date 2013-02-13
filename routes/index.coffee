@@ -13,6 +13,9 @@ routes = [
     path: /^\/((.{2,3})\/|)feed$/
     GET: feed.feed
   }, {
+    path: /^\/((.{2,3})\/|)blog\/feed$/
+    GET: feed.feed
+  }, {
     path: /^\/((.{2,3})\/|)blog\/tag$/
     GET: post.tagList
   }, {

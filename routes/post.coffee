@@ -23,6 +23,17 @@ exports.displayPostList = (req, res, next) ->
     recentPosts: recentPosts
     page: page
 
+exports.redirectPost = (req, res, next) ->
+  postId = req.params[0]
+  language = req.params[1]
+  if language is 'zh-hans'
+    language = 'zhs'
+  else if language is 'zh-hant'
+    language = 'zht'
+  else
+    return next()
+  res.redirect '/' + language + '/' + postId
+
 exports.displayPost = (req, res, next) ->
   language = req.params[1]
   postId = req.params[2]

@@ -25,6 +25,9 @@ exports.start = (next) ->
     process.stderr.write data
 
 exports.updateRelatedPosts = (post) ->
-  processor.send
-    method: 'updateRelatedPosts'
-    args: [post]
+  try
+    processor.send
+      method: 'updateRelatedPosts'
+      args: [post]
+  catch err
+    console.error err

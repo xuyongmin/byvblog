@@ -167,13 +167,14 @@ Post.render = (posts, language, next) ->
 
 Post::modify = (rawPost, next) ->
   @id = rawPost.id
+  @id ?= ''
   @tags = parseTags rawPost.tags
   @clicks = rawPost.clicks
   @private = rawPost.private
   @list = rawPost.list
   @contentsFormat = rawPost.contentsFormat
   @contents = parseContents rawPost.contents
-  if not @id or not @contents
+  if not @contents
     return next new Error('Required fields')
   @save cont(err, post)
   next err, post

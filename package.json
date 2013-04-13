@@ -17,6 +17,7 @@
     "dateformat": "1.0.3-1.2.3",
     "marked": "0.2.5",
     "rss": "0.0.4",
-    "node-segment": "0.0.2"
+    "node-segment": "0.0.2",
+    "opencc": "0.4.0"
   }
 }

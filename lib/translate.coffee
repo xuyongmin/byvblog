@@ -1,17 +1,11 @@
-'use continuation'
-fs = require 'fs'
-child_process = require 'child_process'
+fs = require('fs')
+opencc = require('opencc')
 
-opencc = (config) ->
-  (contents, next) ->
-    try
-      tmpFilename = '/tmp/opencc_' + Math.random()
-      fs.writeFile tmpFilename, contents, obtain()
-      child_process.exec 'opencc -c ' + config + ' -i ' + tmpFilename, obtain(stdout, stderr)
-      fs.unlink tmpFilename
-      next null, stdout
-    catch err
-      next err
+openccZhsToZht = new opencc('zhs2zht.ini')
+openccZhtToZhs = new opencc('zht2zhs.ini')
 
-exports.zhsToZht = opencc 'zhs2zht.ini'
-exports.zhtToZhs = opencc 'zht2zhs.ini'
+exports.zhsToZht = (text, callback) ->
+  openccZhsToZht.convert text, callback
+
+exports.zhtToZhs = (text, callback) ->
+  openccZhtToZhs.convert text, callback

@@ -16,6 +16,11 @@ block content
         input#postTags(name='post[tags]', placeholder='Tags', value=post?post.tags:'')
         p Separate with comma
     .control-group
+      label(for='postTime')= label('Timestamp')
+      .controls
+        input#postTime(name='post[postTime]', placeholder='Timestamp', value=post?post.postTime.getTime():'')
+        p UNIX timestamp of post time.
+    .control-group
       label(for='postClicks')= label('Clicks')
       .controls
         input#postClicks(name='post[clicks]', placeholder='Clicks', value=post?post.clicks:'0')

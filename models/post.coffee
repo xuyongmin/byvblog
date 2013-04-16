@@ -169,19 +169,24 @@ Post.render = (posts, language, next) ->
     next err
 
 Post::modify = (rawPost, next) ->
-  @id = rawPost.id
-  @id ?= ''
-  @tags = parseTags rawPost.tags
-  @clicks = rawPost.clicks
-  @private = rawPost.private
-  @commentDisabled = rawPost.commentDisabled
-  @list = rawPost.list
-  @contentsFormat = rawPost.contentsFormat
-  @contents = parseContents rawPost.contents
-  if not @contents
-    return next new Error('Required fields')
-  @save cont(err, post)
-  next err, post
+  self = this
+  try
+    self.id = rawPost.id
+    self.id ?= ''
+    self.tags = parseTags rawPost.tags
+    self.postTime = new Date(parseInt(rawPost.postTime))
+    self.clicks = rawPost.clicks
+    self.private = rawPost.private
+    self.commentDisabled = rawPost.commentDisabled
+    self.list = rawPost.list
+    self.contentsFormat = rawPost.contentsFormat
+    self.contents = parseContents rawPost.contents
+    if not self.contents
+      throw new Error('Required fields')
+    self.save obtain(post)
+    next null, post
+  catch err
+    next err
 
 Post::getContentsByLanguage = (language) ->
   for content in @contents

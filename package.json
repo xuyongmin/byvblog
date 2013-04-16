@@ -18,6 +18,6 @@
     "marked": "0.2.5",
     "rss": "0.0.4",
     "node-segment": "0.0.2",
-    "opencc": "0.4.0"
+    "opencc": "0.4.2"
   }
 }

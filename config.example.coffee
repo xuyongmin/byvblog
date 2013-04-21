@@ -70,6 +70,9 @@ module.exports =
     }, {
       name: 'Logo'
       link: '/about/logo'
+    }, {
+      name: 'Slides'
+      link: 'http://byvoid.github.io/slides/'
     }]
   }, {
     name: 'Contact'

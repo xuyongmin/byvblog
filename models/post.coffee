@@ -46,7 +46,7 @@ postSchema.pre 'save', (next) ->
   if not @postTime?
     @postTime = new Date
   if not @guid?
-    @guid = utils.md5(@postTime.toString()).substr(0, 10)
+    @guid = utils.md5(@postTime.toString() + Math.random().toString()).substr(0, 10)
   if not @clicks?
     @clicks = 0
   if not @private?
@@ -174,7 +174,10 @@ Post::modify = (rawPost, next) ->
     self.id = rawPost.id
     self.id ?= ''
     self.tags = parseTags rawPost.tags
-    self.postTime = new Date(parseInt(rawPost.postTime))
+    if rawPost.postTime
+      self.postTime = new Date(parseInt(rawPost.postTime))
+    else
+      self.postTime = new Date()
     self.clicks = rawPost.clicks
     self.private = rawPost.private
     self.commentDisabled = rawPost.commentDisabled

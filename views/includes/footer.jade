@@ -1,7 +1,7 @@
 mixin footer()
   footer#footer
     .container.clearfix
-      .one-fourth.widget-container
+      .first.one-fourth.widget-container
         h1 Recent Posts
         ul
           each post in recentPosts
@@ -10,11 +10,24 @@ mixin footer()
       .one-fourth.widget-container
         h1 Blogroll
         ul
-          each link in config.links
+          - for (var i = 0; i < config.links.length / 3; i++)
+            - var link = config.links[i]
             li
               a(href=link.link, target="_blank")= link.name
       .one-fourth.widget-container
-        h1 Something
+        h1 Blogroll
+        ul
+          - for (var i = Math.ceil(config.links.length / 3); i < config.links.length / 3 * 2; i++)
+            - var link = config.links[i]
+            li
+              a(href=link.link, target="_blank")= link.name
+      .last.one-fourth.widget-container
+        h1 Blogroll
+        ul
+          - for (var i = Math.ceil(config.links.length / 3 * 2); i < config.links.length; i++)
+            - var link = config.links[i]
+            li
+              a(href=link.link, target="_blank")= link.name
     #copyrights
       .container.clearfix
         span.right

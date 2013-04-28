@@ -223,6 +223,11 @@ Post::render = (language, next) ->
         post.contents = post.contents
         post.converted = 'opencc'
         rendered = true
+      else
+        translateTip = '抱歉，这篇文章没有中文版。\n\n'
+        post.title = self.contents[0].title
+        post.contents = translateTip + self.contents[0].contents
+        rendered = true
     else if language is 'zht'
       content = self.getContentsByLanguage 'zhs'
       if content
@@ -231,9 +236,14 @@ Post::render = (language, next) ->
         post.contents = post.contents
         post.converted = 'opencc'
         rendered = true
+      else
+        translateTip = '抱歉，這篇文章沒有中文版。\n\n'
+        post.title = self.contents[0].title
+        post.contents = translateTip + self.contents[0].contents
+        rendered = true
     else if language is 'en'
       translateLink = 'http://translate.google.com/translate?act=url&hl=en&ie=UTF8sl=auto&tl=en&u=' + config.site.url + post.id
-      translateTip = 'This post is written in Chinese. If you have trouble reading it, please use [Google Translate](' + translateLink + ')\n\n'
+      translateTip = 'This post is written in Chinese. If you have trouble to read it, please use [Google Translate](' + translateLink + ')\n\n'
       post.title = self.contents[0].title
       post.contents = translateTip + self.contents[0].contents
       rendered = true

@@ -3,7 +3,7 @@ related = require('../middlewares/related')
 
 guid = process.argv[2]
 
-if name?
+if not guid?
   related.updateRelatedPosts obtain()
 else
   related.updateRelatedPosts {guid: guid}, obtain()

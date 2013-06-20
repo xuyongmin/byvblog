@@ -80,14 +80,14 @@ exports.updateRelatedPosts = (targetPost, next) ->
     next = targetPost if not next?
     usePostMap = true
     Post.find {}, obtain(posts)
-  
   for post in posts
     console.log post.id, post.contents[0].title
     relatedPosts = []
     exports.relatedPosts post, config.options.relatedPosts, obtain(relatedPosts)
-    post.related = []
+    related = []
     for p in relatedPosts
-      post.related.push p.guid
+      related.push p.guid
+    post.related = related
     post.save obtain()
   usePostMap = false
   postMap = {}

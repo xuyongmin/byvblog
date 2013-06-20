@@ -59,7 +59,8 @@ exports.relatedPosts = (post, count, next) ->
       post = postMap[guid]
     else
       post = potRelatedPosts[guid]
-      postMap[guid] = post if usePostMap
+      if usePostMap
+        postMap[guid] = post
     posts.push post
   #Calculate similarity
   targets = []
@@ -79,7 +80,7 @@ exports.updateRelatedPosts = (targetPost, next) ->
   else
     next = targetPost if not next?
     usePostMap = true
-    Post.find {}, obtain(posts)
+    Post.find {list:true}, obtain(posts)
   for post in posts
     console.log post.id, post.contents[0].title
     relatedPosts = []

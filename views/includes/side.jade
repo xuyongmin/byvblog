@@ -1,6 +1,6 @@
 mixin sidebar()
   .sidebarBox.widget_search
-    form#searchform(role='search', method='get', action='http://www.google.com/cse', target='_blank')
+    form#searchform(role='search', method='get', action='https://www.google.com/cse', target='_blank')
       label.screen-reader-text(for='s') Search for:
       input#s(type='text', value='', name='q', placeholder='Search this site...')
       input(type='hidden', name='cx', value=config.search.google_cx)

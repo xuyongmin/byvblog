@@ -20,7 +20,7 @@ app.configure ->
   app.use express.session
     secret: config.cookie_secret,
     store: new MongoStore(config.mongo)
-  app.use express.favicon(path.join __dirname, 'public', 'images', 'byvoid64.ico')
+  app.use express.favicon(path.join __dirname, 'public', 'favicon.ico')
   app.use express.logger('dev')
   app.use express.bodyParser()
   app.use express.methodOverride()

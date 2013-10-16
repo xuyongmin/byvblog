@@ -5,6 +5,10 @@ utils = require '../lib/utils'
 config = require '../config'
 marked = require 'marked'
 
+marked.setOptions
+  gfm: true
+  langPrefix: ''
+
 contentSchema = new mongoose.Schema
   title: String
   contents: String

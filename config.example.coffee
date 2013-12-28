@@ -79,11 +79,11 @@ module.exports =
     link: '/contact'
   }]
   social:
-    facebook: 'http://www.facebook.com/byvoid'
-    twitter: "http://twitter.com/byvoid"
-    gplus: "http://plus.google.com/112163558251413006250"
+    facebook: 'https://www.facebook.com/byvoid'
+    twitter: "https://twitter.com/byvoid"
+    gplus: "https://plus.google.com/+CarboKuo"
     linkedin: "http://www.linkedin.com/in/byvoid"
-    github: "http://github.com/BYVoid"
+    github: "https://github.com/BYVoid"
     renren: "http://www.renren.com/byvoid"
     weibo: "http://weibo.com/byvoid"
     douban: "http://www.douban.com/people/byvoid/"

@@ -15,7 +15,7 @@ block content
 
 block scripts
   - if (!post.commentDisabled)
-    script(type='text/javascript')
+    script.
       var disqus_shortname = '#{config.disqus.shortname}';
       var disqus_identifier = '#{post.guid}';
       var disqus_url = location.protocol + '//' + location.host + '/' + '#{post.id}';

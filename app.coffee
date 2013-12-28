@@ -32,6 +32,8 @@ app.configure ->
   app.use express.static(path.join __dirname, 'public')
 
 app.locals.config = config
+app.locals.css = css
+app.locals.js = js
 
 app.configure 'development', ->
   app.use express.errorHandler()

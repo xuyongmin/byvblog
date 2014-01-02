@@ -2,12 +2,13 @@ extends layout
 include includes/pagination
 
 block title
-  title= label('Blog') + ' - BYVoid'
+  title= label('List of posts') + ' - BYVoid'
 
 block banner-image
-  img.intro-img(src="/images/banner-bg-3.jpg")
+  img.intro-img(src="/images/banner-bg-1.jpg")
 
 block content
+  h1= label('List of posts')
   #main.postlist(role="main")
     table
       for post in posts

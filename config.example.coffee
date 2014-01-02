@@ -35,6 +35,9 @@ module.exports =
     name: 'Blog'
     link: '/blog'
   }, {
+    name: 'List'
+    link: '/blog/list'
+  }, {
     name: 'Tags'
     link: '/blog/tag'
   }, {

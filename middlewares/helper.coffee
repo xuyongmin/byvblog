@@ -70,4 +70,11 @@ module.exports = (req, res, next) ->
       text = date.getFullYear() + '年' + monthText[date.getMonth()]
     text
   
+  res.locals.dateText = (date) ->
+    if language is 'en'
+      text = dateFormat(date, 'mmmm dd yyyy')
+    else
+      text = date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日'
+    text
+
   next()

@@ -1,5 +1,5 @@
 module.exports =
-  cookie_secret: 'secret'
+  cookie_secret: 'new HTML5 blog of byvoid'
   mongo:
     host: 'localhost'
     port: 27017
@@ -12,6 +12,7 @@ module.exports =
     description: '積羽沉舟 羣輕折軸'
   options:
     postsPerPage: 6
+    postsBriefPerPage: 30
     feedPosts: 5
     popularPosts: 30
     recentPosts: 6
@@ -82,20 +83,20 @@ module.exports =
     facebook: 'https://www.facebook.com/byvoid'
     twitter: "https://twitter.com/byvoid"
     gplus: "https://plus.google.com/+CarboKuo"
-    linkedin: "http://www.linkedin.com/in/byvoid"
+    linkedin: "https://www.linkedin.com/in/byvoid"
     github: "https://github.com/BYVoid"
     renren: "http://www.renren.com/byvoid"
     weibo: "http://weibo.com/byvoid"
     douban: "http://www.douban.com/people/byvoid/"
   links: [{
-    name: 'AIFreedom'
-    link: 'http://aifreedom.com/'
-  }, {
     name: 'MaskRay'
     link: 'http://maskray.me/'
   }, {
+    name: 'Yuxin\'s Blog'
+    link: 'http://ppwwyyxx.com/'
+  }, {
     name: 'BlahGeek'
-    link: 'http://blog.blahgeek.com/'
+    link: 'https://blog.blahgeek.com/'
   }, {
     name: 'Yangzhe1990\'s Blog'
     link: 'http://yangzhe1990.wordpress.com/'
@@ -134,8 +135,8 @@ module.exports =
     link: 'http://solog.me/'
   }]
   disqus:
-    shortname: 'disqus'
-    developer: 0
+    shortname: 'byvoid'
+    developer: 1
   search:
     google_cx: 'partner-pub-7100557222552278:h6n6am-u2fu'
     domain: 'www.byvoid.com'

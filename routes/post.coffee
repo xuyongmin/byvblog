@@ -23,6 +23,27 @@ exports.displayPostList = (req, res, next) ->
     recentPosts: recentPosts
     page: page
 
+exports.displayPostBriefList = (req, res, next) ->
+  language = req.params[1]
+  page = parseInt req.params[3]
+  page = 1 if isNaN(page)
+  
+  if language? and not (language in config.languages)
+    return next()
+  
+  Post.getPosts {private:false, list:true}, page, config.options.postsBriefPerPage, obtain posts
+  Post.render posts, language, obtain(posts)
+  Post.getPopularPosts config.options.popularPosts, obtain popularPosts
+  Post.getArchive obtain archives
+  Post.getRecentPosts config.options.recentPosts, obtain recentPosts
+  
+  res.render 'postsbrieflist',
+    posts: posts
+    popularPosts: popularPosts
+    archives: archives
+    recentPosts: recentPosts
+    page: page
+
 exports.redirectPost = (req, res, next) ->
   postId = req.params[0]
   language = req.params[1]

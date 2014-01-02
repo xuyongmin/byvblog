@@ -1,0 +1,22 @@
+extends layout
+include includes/pagination
+
+block title
+  title= label('Blog') + ' - BYVoid'
+
+block banner-image
+  img.intro-img(src="/images/banner-bg-3.jpg")
+
+block content
+  #main.postlist(role="main")
+    table
+      for post in posts
+        tr
+          td= dateText(post.postTime)
+          td
+            a(href=langLink('/' + post.id), data-post-id=post.id)= post.title
+    mixin pagination(postId)
+
+block scripts
+  script.
+    history.replaceState('postbrieflist');

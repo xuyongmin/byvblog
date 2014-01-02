@@ -16,7 +16,7 @@ exports.feed = (req, res, next) ->
     author: config.site.author
     site_url: config.site.url
     feed_url: config.site.url + 'feed'
-    image_url: 'http://example.com/icon.png'
+    image_url: '/favicon.ico'
   })
   
   for post in posts

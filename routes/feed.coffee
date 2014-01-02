@@ -24,7 +24,7 @@ exports.feed = (req, res, next) ->
       title: post.title
       description: post.contents
       url: config.site.url + post.id
-      guid: '111'
+      guid: post.guid
       author: config.site.author
       date: post.postTime
   

@@ -1,6 +1,7 @@
 'use continuation'
 Post = require('../models/post')
 config = require('../config')
+translate = require '../lib/translate'
 
 Segment = require('node-segment').Segment
 segment = new Segment()
@@ -12,19 +13,24 @@ segment.loadDict('stopword.txt')
 segment.loadDict('synonym.txt')
 segment.loadDict('wildcard.txt')
 
-segmentation = (post) ->
-  segments = segment.doSegment(post.contents[0].contents)
+segmentation = (post, callback) ->
+  content = post.contents[0]
+  contents = content.contents
+  if content.language is 'zhs'
+    translate.zhsToZht content.contents, obtain(contents)
+  segments = segment.doSegment(contents)
   words = {}
   for seg in segments
     words[seg.w] ?= 0
     words[seg.w]++
   post.words = words
+  callback null
 
 similarity = (post1, post2) ->
   if not post1.words?
-    segmentation post1
+    segmentation post1, obtain()
   if not post2.words?
-    segmentation post2
+    segmentation post2, obtain()
   
   dist = 0
   calc = {}
@@ -81,8 +87,10 @@ exports.updateRelatedPosts = (targetPost, next) ->
     next = targetPost if not next?
     usePostMap = true
     Post.find {list:true}, obtain(posts)
+  i = 0
   for post in posts
-    console.log post.id, post.contents[0].title
+    i += 1
+    console.log i, posts.length, post.id, post.contents[0].title
     relatedPosts = []
     exports.relatedPosts post, config.options.relatedPosts, obtain(relatedPosts)
     related = []

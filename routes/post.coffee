@@ -87,6 +87,31 @@ exports.displayPost = (req, res, next) ->
     recentPosts: recentPosts
     relatedPosts: relatedPosts
 
+exports.displayIndex = (req, res, next) ->
+  language = req.params[1]
+  page = parseInt req.params[3]
+  page = 1 if isNaN(page)
+  
+  if language? and not (language in config.languages)
+    return next()
+  
+  Post.findOne {id: ""}, obtain(post)
+  post.render language, obtain(post)
+  
+  Post.getPosts {private:false, list:true}, page, config.options.postsPerPage, obtain posts
+  Post.render posts, language, obtain(posts)
+  Post.getPopularPosts config.options.popularPosts, obtain popularPosts
+  Post.getArchive obtain archives
+  Post.getRecentPosts config.options.recentPosts, obtain recentPosts
+  
+  res.render 'index',
+    post: post
+    posts: posts
+    popularPosts: popularPosts
+    archives: archives
+    recentPosts: recentPosts
+    page: page
+
 exports.displayTag = (req, res, next) ->
   language = req.params[1]
   tagName = req.params[2]

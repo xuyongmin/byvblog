@@ -1,0 +1,22 @@
+extends layout
+include includes/post
+include includes/pagination
+
+block title
+  title= 'BYVoid'
+
+block banner-image
+  img.intro-img(src="/images/banner-bg-5.jpg")
+
+block content
+  mixin post(post, false)
+  - if (session.user)
+    a(href='/admin/edit/' + post.guid)= label('Edit post')
+  #main.postlist(role="main")
+    each post in posts
+      mixin post(post, true)
+    mixin pagination("blog")
+
+block scripts
+  script.
+    history.replaceState('postlist');

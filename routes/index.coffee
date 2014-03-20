@@ -4,6 +4,9 @@ admin = require('./admin')
 
 routes = [
   {
+    path: /^\/((.{2,3})\/|)$/
+    GET: post.displayIndex
+  }, {
     path: /^\/((.{2,3})\/|)blog$/
     GET: post.displayPostList
   }, {

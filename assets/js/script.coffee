@@ -11,12 +11,16 @@
 #= require behaviours
 
 $ = jQuery
-$ ->
-  hljs.initHighlightingOnLoad()
+
+pageInit = ->
+  hljs.initHighlighting()
   $('.tab_content').hide()
   $('ul.tabs li:first').addClass('active').show()
   $('.tab_content:first').show()
   resizeImages()
+
+InstantClick.on('change', pageInit);
+$(pageInit)
 
 $('ul.tabs li').click ->
   $('ul.tabs li').removeClass('active')

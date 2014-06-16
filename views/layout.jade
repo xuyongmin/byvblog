@@ -25,4 +25,6 @@ html
       mixin footer()
     != js('script')
     block scripts
+    script(data-no-instant).
+      InstantClick.init(50);
     != config.pageTail

@@ -1,3 +1,4 @@
+#= require instantclick.min
 #= require jquery-1.8.2
 #= require highlight.min
 #= require yepnope

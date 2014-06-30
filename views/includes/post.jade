@@ -23,6 +23,9 @@ mixin post(post, inList)
           a.post_header_link(href=langLink('/' + post.id), data-post-id=post.id)= post.title
       !{post.contents}
       - if (!inList && post.list)
+        section.social-buttons
+          .g-plusone(data-annotation="inline")
+          .fb-like(data-layout="standard", data-action="like", data-show-faces="true", data-share="true")
         section.related-post
           h2= label('Related posts')
           ul

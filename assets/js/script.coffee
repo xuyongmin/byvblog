@@ -18,6 +18,7 @@ pageInit = ->
   $('ul.tabs li:first').addClass('active').show()
   $('.tab_content:first').show()
   resizeImages()
+  ga('send', 'pageview', location.pathname + location.search);
 
 InstantClick.on('change', pageInit);
 $(pageInit)

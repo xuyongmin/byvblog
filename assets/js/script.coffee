@@ -1,4 +1,4 @@
-#= require instantclick.min
+# instantclick.min
 #= require jquery-1.8.2
 #= require highlight.min
 #= require yepnope
@@ -20,7 +20,7 @@ pageInit = ->
   resizeImages()
   ga('send', 'pageview', location.pathname + location.search);
 
-InstantClick.on('change', pageInit);
+#InstantClick.on('change', pageInit);
 $(pageInit)
 
 $('ul.tabs li').click ->
